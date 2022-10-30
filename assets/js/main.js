@@ -1,12 +1,15 @@
 // funções construtoras
 function Calculadora() {
+    //captura o elemento html e exibe o valor digitado
     this.display = document.querySelector('.display');
     
+    //inicia 
     this.inicia = () => { 
         this.getClick();
         this.getEnter();
     };
 
+    // trata a interação com a tecla enter
     this.getEnter = () => {
        document.addEventListener('keypress', e =>{
             if(e.keyCode === 13){
@@ -15,6 +18,8 @@ function Calculadora() {
 
         })
     }
+
+    // identifica o click do botão da calculadora
     this.getClick = () => {
         document.addEventListener('click', event => {
             const el = event.target;
@@ -25,6 +30,7 @@ function Calculadora() {
         });
     };
 
+    // faz a operação  matemática
     this.realizaConta =()=>{
         try {
             const conta = eval(this.display.value);
@@ -39,17 +45,23 @@ function Calculadora() {
         }
     };
 
+    // exibe o valor clicado no display
     this.addNumDisplay = el => {
         this.display.value += el.innerText;
         this.display.focus();
     };
 
+    // limpa o display
     this.clear = () => this.display.value = '';
 
+    // apaga um valor da direita para a  esquerda
     this.del = () => this.display.value = this.display.value.slice(0,-1);
 
     
 }
 
+//cria uma instância do objeto calculadora
 const calculadora = new Calculadora();
+
+// roda a função 
 calculadora.inicia();
